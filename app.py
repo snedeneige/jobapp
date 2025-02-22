@@ -56,7 +56,7 @@ HTML_TEMPLATE = '''
 <body>
   <h1>Why hire me at {{ company }}?</h1>
   <form id="question-form">
-    <textarea id="question" name="question" placeholder="Type your question here" required style="width:400px; height:100px;"></textarea>
+    <textarea id="question" name="question" placeholder="Ask your question here" required style="width:400px; height:100px;"></textarea>
     <button type="submit">Submit</button>
   </form>
   
