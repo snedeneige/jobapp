@@ -181,3 +181,5 @@ settings.json
 
 /job_descriptions/*
 !/job_descriptions/
+
+agent_instructions.txt

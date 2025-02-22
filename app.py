@@ -6,6 +6,14 @@ app = Flask(__name__)
 # A simple dictionary to cache agents.
 agents = {}
 
+agent_instructions = None
+
+try:
+  with open("agent_instructions.txt", "r") as file:
+    agent_instructions = file.read()
+except FileNotFoundError:
+    print("Agent instructions not found.")
+
 def get_job_description(job_id: str) -> str:
     # Open job_descriptions/{job_id}.txt and return the contents.
 
@@ -18,7 +26,7 @@ def get_job_description(job_id: str) -> str:
 def get_agent(job_id: str) -> JobAgent:
     if job_id not in agents:
         job_description = get_job_description(job_id)
-        agents[job_id] = JobAgent(job_description)
+        agents[job_id] = JobAgent(job_description, agent_instructions)
     return agents[job_id]
 
 HTML_TEMPLATE = '''
@@ -46,7 +54,7 @@ HTML_TEMPLATE = '''
   </style>
 </head>
 <body>
-  <h1>Why hire Simon at {{ company }}?</h1>
+  <h1>Why hire me at {{ company }}?</h1>
   <form id="question-form">
     <textarea id="question" name="question" placeholder="Type your question here" required style="width:400px; height:100px;"></textarea>
     <button type="submit">Submit</button>
