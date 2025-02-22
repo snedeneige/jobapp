@@ -169,3 +169,13 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+# Custom folders
+
+/documents/*
+!/documents/
+
+/job_descriptions/*
+!/job_descriptions/
