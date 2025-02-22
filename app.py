@@ -34,7 +34,7 @@ HTML_TEMPLATE = '''
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ask a Question</title>
+  <title>Hire me!</title>
   <style>
     /* CSS spinner styling */
     #spinner {
@@ -54,6 +54,7 @@ HTML_TEMPLATE = '''
   </style>
 </head>
 <body>
+  <p>Link to GitHub: <a href="https://github.com/snedeneige/jobapp" target="_blank">jobapp</a></p>
   <h1>Why hire me at {{ company }}?</h1>
   <form id="question-form">
     <textarea id="question" name="question" placeholder="Ask your question here" required style="width:400px; height:100px;"></textarea>
