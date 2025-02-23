@@ -9,16 +9,14 @@ agents = {}
 agent_instructions = None
 
 try:
-  with open("agent_instructions.txt", "r") as file:
+  with open("agent_instructions.txt", "r", encoding='utf8') as file:
     agent_instructions = file.read()
 except FileNotFoundError:
     print("Agent instructions not found.")
 
 def get_job_description(job_id: str) -> str:
-    # Open job_descriptions/{job_id}.txt and return the contents.
-
     try:
-        with open(f"job_descriptions/{job_id}.txt", "r") as file:
+        with open(f"job_descriptions/{job_id}.txt", "r", encoding='utf8') as file:
             return file.read()
     except FileNotFoundError:
         return "Job description not found."
@@ -104,7 +102,7 @@ HTML_TEMPLATE = '''
 
 @app.route("/<job_id>", methods=["GET"])
 def index(job_id):
-    company_name = job_id[0].upper() + job_id[1:]
+    company_name = job_id.upper()
 
     return render_template_string(HTML_TEMPLATE, company=company_name, job_id=job_id)
 
