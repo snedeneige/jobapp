@@ -4,7 +4,9 @@ A job app using ChatGPT and RAG to promote the owner for some position.
 ## To use
 git clone https://github.com/snedeneige/jobapp
 
-Make sure to add relevant *.txt files to the *documents* and the *job_descriptions* folders.
+Make sure to add relevant *.txt files to the *documents* and the *job_descriptions* folders which should be placed in the root folder.
+
+The *documents* folder could contain files like *CV.txt*, *handling_stress.txt* etc, while the files in the *job_descriptions* folder contain info about each job for which there should be an endpoint. For example *netto.txt* would make a /netto endpoint with the text **Why hire me at NETTO**?
 
 Also, add an *agent_instructions.txt* file. These are all excluded by the .gitignore by default.
 
