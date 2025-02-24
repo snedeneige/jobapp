@@ -2,6 +2,7 @@ import logging
 from rag import Rag
 from sopenai import Chat
 
+logging.basicConfig(level=logging.INFO)
 
 class JobAgent:
     """
@@ -62,10 +63,10 @@ class JobAgent:
                 self.retrieved_docs.add(doc)
             
             self.chat.add_user_message(question)
-            logging.info("User question added: %s", question)
+            logging.info(f"User question added: {question}")
             
             response = self.chat.query_response()
-            logging.info("Chat response received.")
+            logging.info(f"Chat response received: {response}")
             return response
         
         except Exception as e:
