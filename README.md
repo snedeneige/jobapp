@@ -8,7 +8,7 @@ Make sure to add relevant *.txt files to the *documents* and the *job_descriptio
 
 The *documents* folder could contain files like *CV.txt*, *handling_stress.txt* etc, while the files in the *job_descriptions* folder contain info about each job for which there should be an endpoint. For example *netto.txt* would make a /netto endpoint with the text **Why hire me at NETTO**?
 
-Also, add an *agent_instructions.txt* file. These are all excluded by the .gitignore by default.
+Also, add an *agent_instructions.txt* file. These files and folders are all excluded by the .gitignore by default.
 
 ## How it works
 Each doc in the *documents* folder is transformed into a fixed-length (256 here) vector by OpenAI's *Embedding* API: https://platform.openai.com/docs/guides/embeddings and stored in a DataFrame.
