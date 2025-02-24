@@ -3,7 +3,6 @@ from agent import JobAgent
 
 app = Flask(__name__)
 
-# A simple dictionary to cache agents.
 agents = {}
 
 agent_instructions = None
