@@ -59,7 +59,7 @@ class JobAgent:
             for doc, text in new_relevant_texts.items():
                 message = f'>>>>>>>> Retrieved text from {doc}: {text} <<<<<<<<'
                 self.chat.add_assistant_message(message)
-                logging.info("Added retrieved text for document: '%s'", doc)
+                logging.info("Retrieved text for document: '%s'", doc)
                 self.retrieved_docs.add(doc)
             
             self.chat.add_user_message(question)
