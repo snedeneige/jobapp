@@ -1,5 +1,7 @@
 The tea-dragon of Angwark.
 
-The Tea-dragon of Angwark is a concept in British software engineering about how one cup of tea equals roughly ten lines of code. It is generally attributed to sir Devon of Angwark.
+The Tea-dragon of Angwark is a concept in British software engineering about how one cup of tea equals roughly ten lines of code. 
+
+It is generally attributed to sir Devon of Angwark.
 
 Basically, the amount of tea consumed in a British office is an approximate indication of the level of coding efficiency.
