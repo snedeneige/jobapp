@@ -45,7 +45,7 @@ class JobAgent:
             # Retrieve relevant texts based on the user's question.
             relevant_texts = self.rag.retrieve_relevant_texts(question)
             if not isinstance(relevant_texts, dict):
-                logging.error("Expected a dictionary of relevant texts, got %s", type(relevant_texts))
+                logging.error("Expected to retrieve a dictionary of relevant texts, but got: '%s'", type(relevant_texts))
                 return "Error: Unable to process your request at this time."
             
             # Filter out texts that have already been provided.
@@ -59,14 +59,13 @@ class JobAgent:
             for doc, text in new_relevant_texts.items():
                 message = f'>>>>>>>> Retrieved text from {doc}: {text} <<<<<<<<'
                 self.chat.add_assistant_message(message)
-                logging.info("Added retrieved text for document '%s'.", doc)
+                logging.info("Added retrieved text for document: '%s'", doc)
                 self.retrieved_docs.add(doc)
             
             self.chat.add_user_message(question)
-            logging.info(f"User question added: {question}")
             
             response = self.chat.query_response()
-            logging.info(f"Chat response received: {response}")
+            logging.info("Chat response received from OpenAI: '%s'", response)
             return response
         
         except Exception as e:

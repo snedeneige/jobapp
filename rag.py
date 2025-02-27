@@ -38,9 +38,9 @@ class Rag:
                     documents_text.append(text)
                     self.documents[document] = text
             except FileNotFoundError:
-                logging.warning(f"File not found: {file_path}")
+                logging.warning("File not found: '%s'", file_path)
             except Exception as e:
-                logging.warning(f"Error reading {file_path}: {e}")
+                logging.warning("Error reading %s: '%s'", file_path, e)
 
         if not documents_text:
             raise ValueError("No documents were loaded. Please check the document files.")
