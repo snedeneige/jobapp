@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 logging.info("Starting the Job Application Chatbot...")
 
-_agents = {}
-_agent_instructions = None
+_agents : dict[str, JobAgent] = {}
+_agent_instructions : str | None = None
 
 try:
     with open("agent_instructions.txt", "r", encoding='utf8') as file:

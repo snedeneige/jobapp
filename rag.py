@@ -26,7 +26,6 @@ class Rag:
         self.document_names = [file.stem for file in files]
 
         self.documents: dict[str, str] = {}
-        documents_text = []
         
         # Use pathlib for robust file handling.
         base_path = Path(documents_dir)
@@ -35,13 +34,14 @@ class Rag:
             try:
                 with file_path.open("r", encoding="utf-8") as file:
                     text = file.read()
-                    documents_text.append(text)
                     self.documents[document] = text
             except FileNotFoundError:
                 logging.warning("Rag - File not found: '%s'", file_path)
             except Exception as e:
                 logging.warning("Rag - Error reading %s: '%s'", file_path, e)
 
+        documents_text = list(self.documents.values())
+        
         if not documents_text:
             raise ValueError("Rag - No documents were loaded. Please check the document files.")
 
@@ -50,7 +50,7 @@ class Rag:
 
         # Rename DataFrame indices to match the document names.
         vocab_vectors_df.index = list(self.documents.keys())
-        self.vocab_vectors_df: pd.DataFrame = vocab_vectors_df
+        self.vocab_vectors_df = vocab_vectors_df
 
     def retrieve_text(self, document_name: str) -> str | None:
         """
