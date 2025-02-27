@@ -117,6 +117,7 @@ def ask(job_id):
     try:
       data = request.get_json()
       question = data.get("question", "")
+      logging.info("Received question: '%s'", question)
       agent = get_agent(job_id)
       response = agent.process_question(question)
       return {"response": response}
