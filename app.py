@@ -47,6 +47,7 @@ def ask(job_id):
       logging.info("Received question: '%s'", question)
       agent = get_agent(job_id)
       response = agent.process_question(question)
+      logging.info("Returning response: '%s'", response)
       return {"response": response}
     except Exception as e:
       logging.error("Error processing the question: '%s'", e)
