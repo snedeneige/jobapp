@@ -25,7 +25,7 @@ class JobAgent:
 
         if job_description:
             self.chat.add_assistant_message(f"This is the job description: {job_description}")
-            logging.info("Added job description to chat for job: '%s'", job_id)
+            logging.info("Added job description to chat for %s-agent", job_id)
 
     def process_question(self, question: str) -> str:
         """
