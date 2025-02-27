@@ -11,10 +11,11 @@ class JobAgent:
     these texts into the conversation before querying the chat system.
     """
 
-    def __init__(self, job_description : str = None, agent_description : str = None) -> None:
+    def __init__(self, job_id : str, job_description : str = None, agent_description : str = None) -> None:
         """
         Initialize the Agent with instances of Rag and Chat, and a set to track already retrieved documents.
         """
+        self.job_id = job_id
         self.rag = Rag()
         if agent_description:
             self.chat = Chat(agent_description)
@@ -24,7 +25,7 @@ class JobAgent:
 
         if job_description:
             self.chat.add_assistant_message(f"This is the job description: {job_description}")
-            logging.info("Added job description to chat.")
+            logging.info("Added job description to chat for job: '%s'", job_id)
 
     def process_question(self, question: str) -> str:
         """
@@ -45,7 +46,7 @@ class JobAgent:
             # Retrieve relevant texts based on the user's question.
             relevant_texts = self.rag.retrieve_relevant_texts(question)
             if not isinstance(relevant_texts, dict):
-                logging.error("Expected to retrieve a dictionary of relevant texts, but got: '%s'", type(relevant_texts))
+                logging.error("Expected to retrieve a dictionary of relevant texts for job %s, but got: '%s'", self.job_id, type(relevant_texts))
                 return "Error: Unable to process your request at this time."
             
             # Filter out texts that have already been provided.
@@ -59,15 +60,15 @@ class JobAgent:
             for doc, text in new_relevant_texts.items():
                 message = f'>>>>>>>> Retrieved text from {doc}: {text} <<<<<<<<'
                 self.chat.add_assistant_message(message)
-                logging.info("Retrieved text for document: '%s'", doc)
+                logging.info("%s retrieved text for document: '%s'", self.job_id, doc)
                 self.retrieved_docs.add(doc)
             
             self.chat.add_user_message(question)
             
             response = self.chat.query_response()
-            logging.info("Chat response received from OpenAI: '%s'", response)
+            logging.info("Chat response received from OpenAI for job %s: '%s'", self.job_id, response)
             return response
         
         except Exception as e:
-            logging.exception("An error occurred while processing the question.")
+            logging.exception("An error occurred for job %s while processing the question.", self.job_id)
             return "An error occurred while processing your question."

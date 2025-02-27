@@ -38,12 +38,12 @@ class Rag:
                     documents_text.append(text)
                     self.documents[document] = text
             except FileNotFoundError:
-                logging.warning("File not found: '%s'", file_path)
+                logging.warning("Rag - File not found: '%s'", file_path)
             except Exception as e:
-                logging.warning("Error reading %s: '%s'", file_path, e)
+                logging.warning("Rag - Error reading %s: '%s'", file_path, e)
 
         if not documents_text:
-            raise ValueError("No documents were loaded. Please check the document files.")
+            raise ValueError("Rag - No documents were loaded. Please check the document files.")
 
         # Vectorize the loaded documents.
         vocab_vectors_df: pd.DataFrame = self.vectorizer.vectorize(documents_text)
