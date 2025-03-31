@@ -1,5 +1,5 @@
 # jobapp
-A job app using ChatGPT and RAG to promote the owner for some position.
+A job app using ChatGPT and RAG to promote the owner for some position. Mostly for fun and learning.
 
 ## To use
 git clone https://github.com/snedeneige/jobapp
